@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -19,7 +20,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return response()->json(['status' => 'success', 'message' => 'Success retrieved.', 'users' => UserResource::collection(User::all())], 200);
+        return response()->json(['status' => 'success', 'message' => 'Successfully retrieved.', 'users' => UserResource::collection(User::all())], 200);
     }
 
     /**
@@ -30,7 +31,9 @@ class UserController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
-        $user = User::create($request->validated());
+        $values = $request->validated();
+        $values['password'] = Hash::make($values['password']);
+        $user = User::create($values);
 
         return response()->json(['status' => 'success', 'message' => 'User successfully stored.'], 200);
     }
@@ -49,13 +52,17 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\UserUpdateRequest  $request
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
     public function update(UserUpdateRequest $request, User $user)
     {
-        $user->update($request->validated());
+        $values = $request->validated();
+        if (isset($values['password']))
+            $values['password'] = Hash::make($values['password']);
+
+        $user->update($values);
 
         return response()->json(['status' => 'success', 'message' => 'User successfully updated.'], 200);
         
@@ -72,14 +79,5 @@ class UserController extends Controller
         $user->delete();
 
         return response()->json(['status' => 'success', 'message' => 'User successfully deleted.'], 200);
-    }
-
-    // test 
-    public function logout (Request $request)
-    {
-        $token = $request->user()->token();
-        $token->revoke();
-        $response = ['message' => 'You have been successfully logged out!'];
-        return response($response, 200);
     }
 }
