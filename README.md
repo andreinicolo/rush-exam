@@ -1,5 +1,5 @@
 ### Clone the repository
-    > git clone https://git@github.com:andreinicolo/rush-exam.git
+    > git clone git@github.com:andreinicolo/rush-exam.git
 
 
 ### Install the dependencies
