@@ -1,5 +1,5 @@
 ### Clone the repository
-    > git clone [git@github.com](https://git@github.com):andreinicolo/rush-exam.git
+    > git clone https://git@github.com:andreinicolo/rush-exam.git
 
 
 ### Install the dependencies
@@ -28,7 +28,7 @@
     > php artisan serve
 
 
-- go to [http://localhost:8000/](http://localhost:8000/) to test the project
+- go to http://localhost:8000/ to test the project
 - use the following credentials to login:
     > username: admin@admin.com
     
