@@ -33,3 +33,11 @@
     > username: admin@admin.com
     
     > password: admin
+
+### list of endpoints for users CRUD API
+    > to get the list of users: GET /api/users
+    > to get a user: GET /api/users/{id}
+    > to store a user: POST /api/users 
+    > to update a user: PATCH /api/users/{id}
+    > to delete a user: DELETE /api/users/{id}
+
