@@ -17,7 +17,7 @@
         DB_PASSWORD=[your db password]
 
 ### migrate and seed
-    > php artisan  migrate
+    > php artisan migrate
     > php artisan db:seed
 
 
@@ -30,5 +30,6 @@
 
 - go to [http://localhost:8000/](http://localhost:8000/) to test the project
 - use the following credentials to login:
-	> username: admin@admin.com
-	> password: admin
+    > username: admin@admin.com
+    
+    > password: admin
